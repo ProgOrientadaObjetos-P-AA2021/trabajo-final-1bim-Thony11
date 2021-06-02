@@ -6,62 +6,39 @@
 package paquetetres;
 
 import java.io.Serializable;
-
 /**
  *
  * @author Lenovo
  */
 public class Ubicacion implements Serializable {
-
-    private String nombreBarrio;
+    
+    private String nomBarrio;
     private String referencia;
-    private String numeroCasa;
-
-    public Ubicacion(String nombreB, String ref) {
-        nombreBarrio = nombreB;
-        referencia = ref;
-    }
-
-    public Ubicacion(String nombreB, String ref, String numCasa) {
-        nombreBarrio = nombreB;
-        referencia = ref;
-        numeroCasa = numCasa;
-    }
-
-    public void establecerNombreBarrio(String nombre) {
-        nombreBarrio = nombre;
-    }
-
-    public void establecerReferencia(String ref) {
-        referencia = ref;
-    }
-
-    public void establecerNumeroCasa(String numCasa) {
-        numeroCasa = numCasa;
-    }
-
-    public String obtenerNombreBarrio() {
-        return nombreBarrio;
-    }
-
-    public String obtenerReferencia() {
-        return referencia;
-    }
-
-    public String obtenerNumeroCasa() {
-        return numeroCasa;
+    private String casa;
+    
+    public Ubicacion(String numCasa,String nom, String refe){
+        casa = numCasa;
+        nomBarrio = nom;
+        referencia = refe;
     }
     
-    @Override
-    public String toString() {
-        String cadena = String.format("Información de la Ubicación:\n"
-                + " - Nombre del Barrio: %s\n"
-                + " - Referencia: %s\n"
-                + " - Número de casa: %s\n",
-                obtenerNombreBarrio(),
-                obtenerReferencia(),
-                obtenerNumeroCasa());
-        return cadena;
+    public void establecerNomBarrio(String tipo){
+        nomBarrio = tipo;
     }
-
+    public void establecerReferencia(String tipo){
+        referencia = tipo;
+    }
+    public void establecerCasa(String tipo){
+        casa = tipo;
+    }
+    
+    public String obtenerNomBarrio(){
+        return nomBarrio;
+    }
+    public String obtenerReferencia(){
+        return referencia;
+    }
+    public String obtenerCasa(){
+        return casa;
+    }
 }

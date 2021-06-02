@@ -4,128 +4,125 @@
  * and open the template in the editor.
  */
 package paqueteseis;
-
 import java.io.Serializable;
-import paquetecinco.Constructora;
-import paquetecuatro.Ciudad;
 import paquetedos.Propietario;
 import paquetetres.Ubicacion;
-
+import paquetecuatro.Ciudad;
+import paquetecinco.Constructora;
 /**
  *
- * @author reroes
+ * @author Lenovo
  */
 public class Casa implements Serializable {
-
-    private Propietario personaPropietaria;
-    private double precioMetro2;
-    private int numeroMetro2;
+   
+    private Propietario[] po;
+    private double precimCua;
+    private double numMetros;
     private double costoFinal;
-    private Ubicacion ubicacionCasa;
-    private Ciudad ciudadCasa;
-    private int numeroCuartos;
-    private Constructora empresaConstructora;
-
-    public Casa(Propietario persona, double precioM2, int numM2,
-            Ubicacion ubiCasa, Ciudad ciud, int cuartos,
-            Constructora empresa) {
-        personaPropietaria = persona;
-        precioMetro2 = precioM2;
-        numeroMetro2 = numM2;
-        ubicacionCasa = ubiCasa;
-        ciudadCasa = ciud;
-        numeroCuartos = cuartos;
-        empresaConstructora = empresa;
+    private Ubicacion[] ubi;
+    private Ciudad[] ciu;
+    private int numCuartos;
+    private Constructora[] cons;
+    
+    public Casa (Propietario[] p,Ubicacion[] u,Ciudad[] ci
+            ,Constructora[] c){
+        po = p;
+        precimCua = 8.50;
+        numMetros = 110;
+        ubi = u;
+        ciu = ci;
+        numCuartos = 5;
+        cons = c;
     }
-
-    public void establecerPersonaPropietaria(Propietario p) {
-        personaPropietaria = p;
+    
+    public void establecerPo(Propietario[] tipo){
+        po = tipo;
     }
-
-    public void establecerPrecioMetro2(double precio) {
-        precioMetro2 = precio;
+    public void establecerPreciomCua(double tipo){
+        precimCua = tipo;
     }
-
-    public void establecerNumeroMetro2(int metro) {
-        numeroMetro2 = metro;
+    public void establecerNumMetros(double tipo){
+        numMetros = tipo;
     }
-
-    public void establecerCostoFinal() {
-        costoFinal = numeroMetro2 * precioMetro2;
+    public void establecerCostoFinal(){
+        
+        costoFinal = numMetros * precimCua; 
     }
-
-    public void establecerUbicacionCasa(Ubicacion ubi) {
-        ubicacionCasa = ubi;
+    public void establecerUbi(Ubicacion[] tipo){
+        ubi = tipo;
     }
-
-    public void establecerCiudadCasa(Ciudad ciu) {
-        ciudadCasa = ciu;
+    public void establecerCiu(Ciudad[] tipo){
+        ciu = tipo;
     }
-
-    public void establecerNumeroCuartos(int cuartos) {
-        numeroCuartos = cuartos;
+    public void establecerNumCuartos(int tipo){
+        numCuartos = tipo;
     }
-
-    public void establecerEmpresaConstructora(Constructora emp) {
-        empresaConstructora = emp;
+    public void establecerCons(Constructora[] tipo){
+        cons = tipo;
     }
-
-    public Propietario obtenerPersonaPropietaria() {
-        return personaPropietaria;
+    
+    
+    public Propietario[] obtenerPo(){
+        return po;
     }
-
-    public double obtenerPrecioMetro2() {
-        return precioMetro2;
+    public double obtenerPreciomCua(){
+        return precimCua;
     }
-
-    public int obtenerNumeroMetro2() {
-        return numeroMetro2;
+    public double obtenerNumMetros(){
+        return numMetros;
     }
-
-    public double obtenerCostoFinal() {
+    public double obtenerCostoFinal(){
         return costoFinal;
     }
-
-    public Ubicacion obtenerUbicacionCasa() {
-        return ubicacionCasa;
+    public Ubicacion[] obtenerUbi(){
+        return ubi;
     }
-
-    public Ciudad obtenerCiudadCasa() {
-        return ciudadCasa;
+    public Ciudad[] obtenerCiu(){
+        return ciu ;
     }
-
-    public int obtenerNumeroCuartos() {
-        return numeroCuartos;
+    public int obtenerNumCuartos(){
+        return numCuartos;
     }
-
-    public Constructora obtenerEmpresaConstructora() {
-        return empresaConstructora;
-    }
-
+    public Constructora[] obtenerCons(){
+        return cons;
+    } 
     @Override
-    public String toString() {
-        String cadena = String.format("Información de la Casa:\n"
-                + "Propietario: %s %s\nIdentificación: %s\n"
-                + "Precio por metro2: %.2f\nNúmero de metros2: %d\n"
-                + "Costo final: %.2f\nUbicacion:\n - Barrio: %s\n"
-                + " - Referencia: %s\n - Numero de casa: %s\n"
-                + "Ciudad: %s\nProvincia: %s\nNúmero de cuartos: %d\n"
-                + "Información de la constructora:\n - Nombre: %s\n"
-                + " - Id de la empresa: %s\n\n",
-                obtenerPersonaPropietaria().obtenerNombre(),
-                obtenerPersonaPropietaria().obtenerApellido(),
-                obtenerPersonaPropietaria().obtenerIdentificacion(),
-                obtenerPrecioMetro2(), obtenerNumeroMetro2(),
-                obtenerCostoFinal(),
-                obtenerUbicacionCasa().obtenerNombreBarrio(),
-                obtenerUbicacionCasa().obtenerReferencia(),
-                obtenerUbicacionCasa().obtenerNumeroCasa(),
-                obtenerCiudadCasa().obtenerNombreCiudad(),
-                obtenerCiudadCasa().obtenerNombreProvincia(),
-                obtenerNumeroCuartos(),
-                obtenerEmpresaConstructora().obtenerNombreConstructora(),
-                obtenerEmpresaConstructora().obtenerIdEmpresa());
+    public String toString(){
+        String cadena = "Datos de Casas\n";
+        
+        for (int i = 0; i < obtenerPo().length; i++) {
+            cadena = String.format("%sNombre: %s\nApellido: %s\n"
+                    + "Identificacion: %s\n", cadena, 
+                  obtenerPo()[i].obtenerNombre(),
+                  obtenerPo()[i].obtenerApellido(),
+                  obtenerPo()[i].obtenerIdentificacion());
+        }
+        cadena = String.format("%sEl precio por el metro cuadrado es:%.2f\n", cadena, 
+                obtenerPreciomCua());
+        cadena = String.format("%sEl número de metros cuadrados es:%.2f\n", cadena, 
+                obtenerNumMetros());
+        cadena = String.format("%sEl número de cuartos es: %d\n", cadena, 
+                obtenerNumCuartos());
+        for (int i = 0; i < obtenerUbi().length; i++) {
+            cadena = String.format("%sEl nombre del barrio es:%s\n"
+                    + "La referencia es: %s\n", cadena, 
+                obtenerUbi()[i].obtenerNomBarrio(),
+                obtenerUbi()[i].obtenerReferencia());
+        }
+        for (int i = 0; i < obtenerCiu().length; i++) {
+            cadena = String.format("%sEl nombre de la ciudad es: %s\n"
+                    + "El nombre de la provincia es: %s\n", cadena, 
+                obtenerCiu()[i].obtenerNomCiudad(),
+                obtenerCiu()[i].obtenerNomProvincia());
+        }
+        for (int i = 0; i < obtenerCons().length; i++) {
+            cadena = String.format("%sEl nombre de la constructora es: %s\n"
+                    + "El ide es: %s\n", cadena, 
+                obtenerCons()[i].obtenerNomConstructora(),
+                obtenerCons()[i].obtenerIdeEmpresa());
+        }
+        cadena = String.format("%sEl costo final de la casa es:%.2f\n", cadena, 
+                obtenerCostoFinal());
         return cadena;
-    }
-
+    } 
 }

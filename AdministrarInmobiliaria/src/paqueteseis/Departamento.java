@@ -6,150 +6,167 @@
 package paqueteseis;
 
 import java.io.Serializable;
-import paquetecinco.Constructora;
-import paquetecuatro.Ciudad;
+import java.util.Scanner;
 import paquetedos.Propietario;
 import paquetetres.Ubicacion;
-
+import paquetecuatro.Ciudad;
+import paquetecinco.Constructora;
 /**
  *
- * @author reroes
+ * @author Lenovo
  */
 public class Departamento implements Serializable {
+    
+    private Propietario[] poDepar;
+    private double precioMetroCua;
+    private double numMetrosCua;
+    private double valorMensual;
+    private double cosFinal;
+    private double precioDepa;
+    private Ubicacion[] ubiDepar;
+    private Ciudad[] ciuDepa;
+    private String[] nomEdificio;
+    private String[] UbiDeparEdi;
+    private Constructora[] consDepa;
 
-    private Propietario personaPropietaria;
-    private double precioMetro2;
-    private int numeroMetro2;
-    private double alicuotaMensual;
-    private double costoFinal;
-    // private double precio;
-    private Ubicacion ubicacionDepartamento;
-    private Ciudad ciudadDepartamento;
-    private String nombreEdificio;
-    private String ubicacionDepartamentoEdificio;
-    private Constructora empresaConstructora;
-
-    public Departamento(Propietario persona, double precioM2, int numM2,
-            double alicuota, Ubicacion ubiDep, Ciudad ciuDep, String nombreEd,
-            String ubiDepEdi, Constructora empresa) {
-        personaPropietaria = persona;
-        precioMetro2 = precioM2;
-        numeroMetro2 = numM2;
-        alicuotaMensual = alicuota;
-        ubicacionDepartamento = ubiDep;
-        ciudadDepartamento = ciuDep;
-        nombreEdificio = nombreEd;
-        ubicacionDepartamentoEdificio = ubiDepEdi;
-        empresaConstructora = empresa;
+    
+    Scanner leer = new Scanner(System.in);
+    
+    public Departamento (Propietario[] pD,
+            Ubicacion[] uD,Ciudad[] ciuD,
+            Constructora[] cD, String[] nom,String[] ubiD){
+        
+        poDepar = pD;
+        precioMetroCua = 10.15;
+        numMetrosCua = 75;
+        valorMensual = 500;
+        precioDepa = 1200;
+        ubiDepar = uD;
+        ciuDepa = ciuD;
+        consDepa = cD;
+        nomEdificio = nom;
+        UbiDeparEdi = ubiD;
     }
-
-    public void establecerPersonaPropietaria(Propietario prop) {
-        personaPropietaria = prop;
+    
+    public void establecerPoDepar(Propietario[] tipo){
+        poDepar = tipo;
     }
-
-    public void establecerPrecioMetro2(double precio) {
-        precioMetro2 = precio;
+    public void establecerPrecioMetroCua(double tipo){
+        precioDepa = tipo;
     }
-
-    public void establecerNumeroMetro2(int numero) {
-        numeroMetro2 = numero;
+    public void establecerNumMetrosCua(double tipo){
+        numMetrosCua = tipo;
     }
-
-    public void establecerAlicuotaMensual(double alicuota) {
-        alicuotaMensual = alicuota;
+    public void establecerValorMensual(double tipo){
+        valorMensual = tipo;
     }
-
-    public void establecerCostoFinal() {
-        costoFinal = (numeroMetro2 * precioMetro2) + (alicuotaMensual * 12);
+    public void establecerCosFinal(){
+        cosFinal = (numMetrosCua * precioMetroCua)+(valorMensual*12);
     }
-
-    public void establecerUbicacionDepartamento(Ubicacion ubiDep) {
-        ubicacionDepartamento = ubiDep;
+    public void establecerPrecioDepa(double tipo){
+        precioDepa = tipo;
     }
-
-    public void establecerCiudadDepartamento(Ciudad ciuDep) {
-        ciudadDepartamento = ciuDep;
+    public void establecerUbiDepar(Ubicacion[] tipo){
+        ubiDepar = tipo;
     }
-
-    public void establecerNombreEdificio(String nombreEd) {
-        nombreEdificio = nombreEd;
+    public void establecerCiuDepa(Ciudad[] tipo){
+        ciuDepa = tipo;
     }
-
-    public void establecerUbicacionDepartamentoEdificio(String ubiEdi) {
-        ubicacionDepartamentoEdificio = ubiEdi;
+    public void establecerNomEdificio(String[] tipo){
+        nomEdificio = tipo;
     }
-
-    public void establecerEmpresaConstructora(Constructora emp) {
-        empresaConstructora = emp;
+    public void establecerUbiDeparEdi(String[] tipo){
+        UbiDeparEdi = tipo;
+    }   
+    public void establecerConsDepa(Constructora[] tipo){
+        consDepa = tipo;
     }
-
-    public Propietario obtenerPersonaPropietaria() {
-        return personaPropietaria;
+    
+    
+    public Propietario[] obtenerPoDepar(){
+        return poDepar;
     }
-
-    public double obtenerPrecioMetro2() {
-        return precioMetro2;
+    public double obtenerPrecioMetroCua(){
+        return precioMetroCua;
     }
-
-    public int obtenerNumeroMetro2() {
-        return numeroMetro2;
+    public double obtenerNumMetrosCua(){
+        return numMetrosCua;
     }
-
-    public double obtenerAlicuotaMensual() {
-        return alicuotaMensual;
+    public  double obtenerValorMensual(){
+        return valorMensual;
     }
-
-    public double obtenerCostoFinal() {
-        return costoFinal;
+    public double obtenerCosFinal(){
+        return cosFinal;
     }
-
-    public Ubicacion obtenerUbicacionDepartamento() {
-        return ubicacionDepartamento;
+    public double obtenerPrecioDepa(){
+        return precioDepa;
     }
-
-    public Ciudad obtenerCiudadDepartamento() {
-        return ciudadDepartamento;
+    public Ubicacion[] obtenerUbiDepar(){
+        return ubiDepar;
     }
-
-    public String obtenerNombreEdificio() {
-        return nombreEdificio;
+    public Ciudad[] obtenerCiuDepa(){
+        return ciuDepa ;
     }
-
-    public String obtenerUbicacionDepartamentoEdificio() {
-        return ubicacionDepartamentoEdificio;
+    public String[] obtenerNomEdificio(){
+        return nomEdificio;
     }
-
-    public Constructora obtenerEmpresaConstructora() {
-        return empresaConstructora;
+    public String[] obtenerUbiDeparEdi(){
+        return UbiDeparEdi;
     }
-
+    public Constructora[] obtenerCons(){
+        return consDepa;
+    }
+    
     @Override
-    public String toString() {
-        String cadena = String.format("Información del Departamento:\n"
-                + "Propietario: %s %s\nIdentificación: %s\n"
-                + "Precio por metro2: %.2f\nNúmero de metros2: %d\n"
-                + "Valor de la alicuóta mensual: %.2f\nCosto final: %.2f\n"
-                + "Ubicacion:\n - Barrio: %s\n - Referencia: %s\n"
-                + " - Numero de casa: %s\nCiudad: %s\nProvincia: %s\n"
-                + "Nombre del edificio: %s\n"
-                + "Ubicación del edificio: %s\n"
-                + "Información de la constructora:"
-                + "\n - Nombre: %s\n - Id de la empresa: %s\n\n",
-                obtenerPersonaPropietaria().obtenerNombre(),
-                obtenerPersonaPropietaria().obtenerApellido(),
-                obtenerPersonaPropietaria().obtenerIdentificacion(),
-                obtenerPrecioMetro2(), obtenerNumeroMetro2(),
-                obtenerAlicuotaMensual(), obtenerCostoFinal(),
-                obtenerUbicacionDepartamento().obtenerNombreBarrio(),
-                obtenerUbicacionDepartamento().obtenerReferencia(),
-                obtenerUbicacionDepartamento().obtenerNumeroCasa(),
-                obtenerCiudadDepartamento().obtenerNombreCiudad(),
-                obtenerCiudadDepartamento().obtenerNombreProvincia(),
-                obtenerNombreEdificio(),
-                obtenerUbicacionDepartamentoEdificio(),
-                obtenerEmpresaConstructora().obtenerNombreConstructora(),
-                obtenerEmpresaConstructora().obtenerIdEmpresa());
+    public String toString(){
+        String cadena = "Datos de los Departamentos\n";
+        
+        for (int i = 0; i < obtenerPoDepar().length; i++) {
+            cadena = String.format("%sNombre: %s\nApellido: %s\nIdentificación: %s\n", cadena, 
+                  obtenerPoDepar()[i].obtenerNombre(),
+                  obtenerPoDepar()[i].obtenerApellido(),
+                  obtenerPoDepar()[i].obtenerIdentificacion());
+        }
+        cadena = String.format("%sEl precio por el metro cuadrado es:%.2f\n", cadena, 
+                obtenerPrecioMetroCua());
+        cadena = String.format("%sEl número de metros cuadrados es:%.2f\n", cadena, 
+                obtenerNumMetrosCua());
+        cadena = String.format("%sEl valor alícuota mensual es: %.2f\n", cadena, 
+                obtenerValorMensual());
+        cadena = String.format("%sEl precio es:%.2f\n", cadena, 
+                obtenerPrecioDepa());
+        
+        for (int i = 0; i < obtenerNomEdificio().length; i++) {
+            cadena = String.format("%sNombre del edificio es: %s\n", cadena, 
+                  obtenerNomEdificio()[i]);
+        }
+        for (int i = 0; i < obtenerUbiDeparEdi().length; i++) {
+            cadena = String.format("%sUbicación del departamento es: %s\n", cadena, 
+                  obtenerUbiDeparEdi()[i]);
+        }
+        
+        for (int i = 0; i < obtenerUbiDepar().length; i++) {
+            cadena = String.format("%sEl número de casa es: %s\n"
+                    + "El nombre del barrio es: %s\n"
+                    + "La referencia es: %s\n", cadena,
+                obtenerUbiDepar()[i].obtenerCasa(),
+                obtenerUbiDepar()[i].obtenerNomBarrio(),
+                obtenerUbiDepar()[i].obtenerReferencia());
+        }
+        for (int i = 0; i < obtenerCiuDepa().length; i++) {
+            cadena = String.format("%sEl nombre de la ciudad es: %s\n"
+                    + "El nombre de la provincia es: %s\n", cadena, 
+                obtenerCiuDepa()[i].obtenerNomCiudad(),
+                obtenerCiuDepa()[i].obtenerNomProvincia());
+        }
+        for (int i = 0; i < obtenerCons().length; i++) {
+            cadena = String.format("%sEl nombre de la constructora es: %s\n"
+                    + "El ide es: %s\n", cadena, 
+                obtenerCons()[i].obtenerNomConstructora(),
+                obtenerCons()[i].obtenerIdeEmpresa());
+        }
+        cadena = String.format("%sEl costo final del departamento es:%.2f\n", cadena, 
+                obtenerCosFinal());
         return cadena;
-    }
-
+    } 
 }

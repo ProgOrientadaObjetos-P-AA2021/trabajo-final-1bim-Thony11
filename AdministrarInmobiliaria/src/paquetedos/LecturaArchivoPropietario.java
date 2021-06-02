@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package paquetelectura;
+package paquetedos;
 
 import java.io.EOFException;
 import java.io.File;
@@ -11,19 +11,18 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
-import paquetecinco.Constructora;
 
 /**
  *
  * @author Lenovo
  */
-public class LeerConstructora {
-
+public class LecturaArchivoPropietario {
+    
     private ObjectInputStream entrada;
-    private ArrayList<Constructora> listaCiudad;
+    private ArrayList<Propietario> propietarios;
     private String nombreArchivo;
 
-    public LeerConstructora(String n) {
+    public LecturaArchivoPropietario(String n) {
         nombreArchivo = n;
         File f = new File(obtenerNombreArchivo());
         if (f.exists()) {
@@ -33,8 +32,7 @@ public class LeerConstructora {
                         new FileInputStream(n));
             } // fin de try
             catch (IOException ioException) {
-                System.err.println("Error al abrir el archivo.");
-
+                System.err.println("Error al abrir el archivo." + ioException);
             } // fin de catch
         }
     }
@@ -43,34 +41,34 @@ public class LeerConstructora {
         nombreArchivo = n;
     }
 
-    public void establecerListaConstructora() {
+    public void establecerPropietarios() {
         // 
-        listaCiudad = new ArrayList<>();
+        propietarios = new ArrayList<>();
         File f = new File(obtenerNombreArchivo());
         if (f.exists()) {
 
             while (true) {
                 try {
-                    Constructora registro = (Constructora) entrada.readObject();
-                    listaCiudad.add(registro);
+                    Propietario registro = (Propietario) entrada.readObject();
+                    propietarios.add(registro);
                 } catch (EOFException endOfFileException) {
                     return; // se llegó al fin del archivo
+                    // System.err.println("Fin de archivo: " + endOfFileException);
 
                 } catch (IOException ex) {
                     System.err.println("Error al leer el archivo: " + ex);
                 } catch (ClassNotFoundException ex) {
                     System.err.println("No se pudo crear el objeto: " + ex);
                 } catch (Exception ex) {
-                    // System.err.println("No hay datos en el archivo: " + ex);
-                    break;
+                    System.err.println("No hay datos en el archivo: " + ex);
+
                 }
             }
         }
-
     }
 
-    public ArrayList<Constructora> obtenerListaConstructora() {
-        return listaCiudad;
+    public ArrayList<Propietario> obtenerPropietarios() {
+        return propietarios;
     }
 
     public String obtenerNombreArchivo() {
@@ -79,15 +77,15 @@ public class LeerConstructora {
 
     @Override
     public String toString() {
-        String cadena = "LISTA DE CONSTRUCTORAS\n\n";
-        for (int i = 0; i < obtenerListaConstructora().size(); i++) {
-            Constructora c = obtenerListaConstructora().get(i);
-            cadena = String.format("%sConstructora %d:\n - Nombre: %s\n"
-                    + " - Id de la empresa: %s\n\n",
-                    cadena, i + 1,
-                    c.obtenerNombreConstructora(),
-                    c.obtenerIdEmpresa());
+        String cadena = "Lista de Propietario\n";
+        for (int i = 0; i < obtenerPropietarios().size(); i++) {
+            Propietario p = obtenerPropietarios().get(i);
+            cadena = String.format("%s(%d) Nombre: %s\n"
+                    + "Apellido: %s\nIdentificacion: %s\n", cadena,
+                    i + 1,p.obtenerNombre(),p.obtenerApellido(),
+                    p.obtenerIdentificacion());
         }
+
         return cadena;
     }
 
@@ -105,5 +103,5 @@ public class LeerConstructora {
             System.exit(1);
         } // fin de catch
     } // fin del método cerrarArchivo
-
+    
 }

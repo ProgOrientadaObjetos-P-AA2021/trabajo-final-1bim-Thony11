@@ -9,54 +9,37 @@ import java.io.Serializable;
 
 /**
  *
- * @author reroes
+ * @author Lenovo
  */
-public class Propietario implements Serializable {
-
+public class Propietario implements Serializable{
+    
     private String nombre;
     private String apellido;
     private String identificacion;
-
-    public Propietario(String name, String lastName, String id) {
-        nombre = name;
-        apellido = lastName;
-        identificacion = id;
-    }
-
-    public void establecerNombre(String n) {
+    
+    public Propietario(String n,String a,String i){
         nombre = n;
-    }
-
-    public void establecerApellido(String a) {
         apellido = a;
+        identificacion = i;
     }
-
-    public void establecerIdentificacion(String id) {
-        identificacion = id;
+    
+    public void establecerNombre(String tipo){
+        nombre = tipo;
     }
-
-    public String obtenerNombre() {
+    public void establecerApellido(String tipo){
+        apellido = tipo;
+    }
+    public void establecerIdentificacion(String tipo){
+        identificacion = tipo;
+    }
+    
+    public String obtenerNombre(){
         return nombre;
     }
-
-    public String obtenerApellido() {
+    public String obtenerApellido(){
         return apellido;
     }
-
-    public String obtenerIdentificacion() {
+    public String obtenerIdentificacion(){
         return identificacion;
     }
-
-    @Override
-    public String toString() {
-        String cadena = String.format("Información del Propietario:\n"
-                + " - Nombre: %s\n"
-                + " - Apellido: %s\n"
-                + " - Identificación: %s\n",
-                obtenerNombre(),
-                obtenerApellido(),
-                obtenerIdentificacion());
-        return cadena;
-    }
-
 }

@@ -11,40 +11,28 @@ import java.io.Serializable;
  *
  * @author Lenovo
  */
-public class Ciudad implements Serializable {
-
-    private String nombreCiudad;
-    private String nombreProvincia;
-
-    public Ciudad(String ciudad, String provincia) {
-        nombreCiudad = ciudad;
-        nombreProvincia = provincia;
-    }
-
-    public void establecerNombreCiudad(String c) {
-        nombreCiudad = c;
-    }
-
-    public void establecerNOmbreProvincia(String p) {
-        nombreProvincia = p;
-    }
-
-    public String obtenerNombreCiudad() {
-        return nombreCiudad;
-    }
-
-    public String obtenerNombreProvincia() {
-        return nombreProvincia;
+public class Ciudad implements Serializable{
+    
+    private String nomCiudad;
+    private String nomProvincia;
+    
+    public Ciudad(String nomCiu,String nomPro){
+        
+        nomCiudad = nomCiu;
+        nomProvincia = nomPro;
     }
     
-    @Override
-    public String toString() {
-        String cadena = String.format("Información de la Ciudad:\n"
-                + " - Nombre de la ciudad: %s\n"
-                + " - Nombre de la provincia: %s\n",
-                obtenerNombreCiudad(),
-                obtenerNombreProvincia());
-        return cadena;
+    public void establecerNomCiudad(String tipo){
+        nomCiudad = tipo;
     }
-
+    public void establecerNomProvincia(String tipo){
+        nomProvincia = tipo;
+    }
+    
+    public String obtenerNomCiudad(){
+        return nomCiudad;
+    }
+    public String obtenerNomProvincia(){
+        return nomProvincia;
+    }
 }

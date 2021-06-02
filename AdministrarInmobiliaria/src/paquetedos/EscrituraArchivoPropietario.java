@@ -3,39 +3,37 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package paquetelectura;
+package paquetedos;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import paquetetres.Ubicacion;
+
 
 /**
- * 
+ *
  * @author Lenovo
  */
-public class EscribirUbicacion {
+public class EscrituraArchivoPropietario {
     
     private String nombreArchivo;
-    private ObjectOutputStream salida; // envía los datos a un archivo
-    private Ubicacion registro;
-    private ArrayList<Ubicacion> lista;
+    private ObjectOutputStream salida; 
+    private Propietario registroPropietario;
+    private ArrayList<Propietario> listaPropietarios;
 
-    public EscribirUbicacion(String nombreArc) {
+    public EscrituraArchivoPropietario(String nombreArc) {
         nombreArchivo = nombreArc;
-        establecerLista(); // obtener los valores (objetos)
-        // que tiene el archivo.
-        // System.out.println(obtenerListaProfesores().size());
+        establecerListaPropietarios(); // obtener los valores (objetos)
+                                    // que tiene el archivo.
         try // abre el archivo
         {
             salida = new ObjectOutputStream(
                     new FileOutputStream(nombreArchivo));
             // proceso para ingresar nuevamente los valores del archivo
-            if (obtenerLista().size() > 0) {
-                for (int i = 0; i < obtenerLista().size(); i++) {
-                    establecerRegistro(obtenerLista().get(i));
+            if (obtenerListaPropietarios().size() > 0) {
+                for (int i = 0; i < obtenerListaPropietarios().size(); i++) {
+                    establecerRegistroPropietario(obtenerListaPropietarios().get(i));
                     establecerSalida();
                 }
             }
@@ -44,19 +42,19 @@ public class EscribirUbicacion {
             System.err.println("Error al abrir el archivo.");
         } // fin de catch
     }
-
-    public void establecerNombreArchivo(String n) {
+    
+    public void establecerNombreArchivo(String n){
         nombreArchivo = n;
     }
 
-    // agrega registros al archivo
-    public void establecerRegistro(Ubicacion u) {
-        registro = u;
+    public void establecerRegistroPropietario(Propietario p) {
+        registroPropietario = p;
     }
 
     public void establecerSalida() {
         try {
-            salida.writeObject(registro); // envía el registro como salida
+            salida.writeObject(registroPropietario); // envía el registro como 
+                                                  // objeto al archivo
         } catch (IOException ex) {
             System.err.println("Error al escribir en el archivo.");
         }
@@ -64,24 +62,23 @@ public class EscribirUbicacion {
 
     // en el atributo listaProfesores obtenemos los registros 
     // del archivo
-    public void establecerLista() {
-        LeerUbicacion u = new LeerUbicacion(obtenerNombreArchivo());
-        u.establecerListaUbicacion();
-        lista = u.obtenerListaUbicacion();
+    public void establecerListaPropietarios() {
+        LecturaArchivoPropietario l = new LecturaArchivoPropietario(obtenerNombreArchivo());
+        l.establecerPropietarios();
+        listaPropietarios = l.obtenerPropietarios();
     }
 
-    public String obtenerNombreArchivo() {
+    public String obtenerNombreArchivo(){
         return nombreArchivo;
     }
-
-    public ArrayList<Ubicacion> obtenerLista() {
-        return lista;
+    
+    public ArrayList<Propietario> obtenerListaPropietarios() {
+        return listaPropietarios;
     }
 
-    public ObjectOutputStream obtenerSalida() {
+    public ObjectOutputStream obtenerSalida(){
         return salida;
     }
-
     public void cerrarArchivo() {
         try // cierra el archivo
         {
@@ -91,8 +88,8 @@ public class EscribirUbicacion {
         } // fin de try
         catch (IOException ioException) {
             System.err.println("Error al cerrar el archivo.");
-
+            
         } // fin de catch
-    }
-
+    } 
+    
 }

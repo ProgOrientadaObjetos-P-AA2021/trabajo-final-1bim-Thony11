@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package paquetelectura;
+package paqueteseis;
 
 import java.io.EOFException;
 import java.io.File;
@@ -17,13 +17,13 @@ import paquetedos.Propietario;
  *
  * @author Lenovo
  */
-public class LeerPropietario {
-
+public class LecturaArchivoCasa {
+    
     private ObjectInputStream entrada;
-    private ArrayList<Propietario> listaPropietario;
+    private ArrayList<Casa> casas;
     private String nombreArchivo;
 
-    public LeerPropietario(String n) {
+    public LecturaArchivoCasa(String n) {
         nombreArchivo = n;
         File f = new File(obtenerNombreArchivo());
         if (f.exists()) {
@@ -33,8 +33,7 @@ public class LeerPropietario {
                         new FileInputStream(n));
             } // fin de try
             catch (IOException ioException) {
-                System.err.println("Error al abrir el archivo.");
-
+                System.err.println("Error al abrir el archivo." + ioException);
             } // fin de catch
         }
     }
@@ -42,54 +41,40 @@ public class LeerPropietario {
     public void establecerNombreArchivo(String n) {
         nombreArchivo = n;
     }
+    
 
-    public void establecerListaPropietario() {
+    public void establecerCasas() {
         // 
-        listaPropietario = new ArrayList<>();
+        casas = new ArrayList<>();
         File f = new File(obtenerNombreArchivo());
         if (f.exists()) {
 
             while (true) {
                 try {
-                    Propietario registro = (Propietario) entrada.readObject();
-                    listaPropietario.add(registro);
+                    Casa registro = (Casa) entrada.readObject();
+                    casas.add(registro);
                 } catch (EOFException endOfFileException) {
                     return; // se llegó al fin del archivo
+                    // System.err.println("Fin de archivo: " + endOfFileException);
 
                 } catch (IOException ex) {
                     System.err.println("Error al leer el archivo: " + ex);
                 } catch (ClassNotFoundException ex) {
                     System.err.println("No se pudo crear el objeto: " + ex);
                 } catch (Exception ex) {
-                    // System.err.println("No hay datos en el archivo: " + ex);
-                    break;
+                    System.err.println("No hay datos en el archivo: " + ex);
+
                 }
             }
         }
-
     }
 
-    public ArrayList<Propietario> obtenerListaPropietario() {
-        return listaPropietario;
+    public ArrayList<Casa> obtenerCasas() {
+        return casas;
     }
 
     public String obtenerNombreArchivo() {
         return nombreArchivo;
-    }
-
-    @Override
-    public String toString() {
-        String cadena = "LISTA DE PROPIETARIOS\n\n";
-        for (int i = 0; i < obtenerListaPropietario().size(); i++) {
-            Propietario p = obtenerListaPropietario().get(i);
-            cadena = String.format("%sPropietario %d:\n - Nombre: %s\n"
-                    + " - Apellido: %s\n - Identificación: %s\n\n",
-                    cadena, i + 1,
-                    p.obtenerNombre(),
-                    p.obtenerApellido(),
-                    p.obtenerIdentificacion());
-        }
-        return cadena;
     }
 
     // cierra el archivo y termina la aplicación
@@ -106,5 +91,5 @@ public class LeerPropietario {
             System.exit(1);
         } // fin de catch
     } // fin del método cerrarArchivo
-
+    
 }

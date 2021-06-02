@@ -3,39 +3,36 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package paquetelectura;
+package paqueteseis;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import paquetecinco.Constructora;
 
 /**
- * 
+ *
  * @author Lenovo
  */
-public class EscribirConstructora {
+public class EscrituraArchivoDepartamento {
     
     private String nombreArchivo;
-    private ObjectOutputStream salida; // envía los datos a un archivo
-    private Constructora registro;
-    private ArrayList<Constructora> lista;
+    private ObjectOutputStream salida; 
+    private Departamento registroDepartamento;
+    private ArrayList<Departamento> listaDepartamentos;
 
-    public EscribirConstructora(String nombreArc) {
+    public EscrituraArchivoDepartamento(String nombreArc) {
         nombreArchivo = nombreArc;
-        establecerLista(); // obtener los valores (objetos)
-        // que tiene el archivo.
-        // System.out.println(obtenerListaProfesores().size());
+        establecerListaDepartamentos(); // obtener los valores (objetos)
+                                    // que tiene el archivo.
         try // abre el archivo
         {
             salida = new ObjectOutputStream(
                     new FileOutputStream(nombreArchivo));
             // proceso para ingresar nuevamente los valores del archivo
-            if (obtenerLista().size() > 0) {
-                for (int i = 0; i < obtenerLista().size(); i++) {
-                    establecerRegistro(obtenerLista().get(i));
+            if (obtenerListaDepartamentos().size() > 0) {
+                for (int i = 0; i < obtenerListaDepartamentos().size(); i++) {
+                    establecerRegistroDepartamento(obtenerListaDepartamentos().get(i));
                     establecerSalida();
                 }
             }
@@ -44,19 +41,19 @@ public class EscribirConstructora {
             System.err.println("Error al abrir el archivo.");
         } // fin de catch
     }
-
-    public void establecerNombreArchivo(String n) {
+    
+    public void establecerNombreArchivo(String n){
         nombreArchivo = n;
     }
 
-    // agrega registros al archivo
-    public void establecerRegistro(Constructora c) {
-        registro = c;
+    public void establecerRegistroDepartamento(Departamento p) {
+        registroDepartamento = p;
     }
 
     public void establecerSalida() {
         try {
-            salida.writeObject(registro); // envía el registro como salida
+            salida.writeObject(registroDepartamento); // envía el registro como 
+                                                  // objeto al archivo
         } catch (IOException ex) {
             System.err.println("Error al escribir en el archivo.");
         }
@@ -64,24 +61,23 @@ public class EscribirConstructora {
 
     // en el atributo listaProfesores obtenemos los registros 
     // del archivo
-    public void establecerLista() {
-        LeerConstructora c = new LeerConstructora(obtenerNombreArchivo());
-        c.establecerListaConstructora();
-        lista = c.obtenerListaConstructora();
+    public void establecerListaDepartamentos() {
+        LecturaArchivoDepartamento l = new LecturaArchivoDepartamento(obtenerNombreArchivo());
+        l.establecerDepartamentos();
+        listaDepartamentos = l.obtenerDepartamentos();
     }
 
-    public String obtenerNombreArchivo() {
+    public String obtenerNombreArchivo(){
         return nombreArchivo;
     }
-
-    public ArrayList<Constructora> obtenerLista() {
-        return lista;
+    
+    public ArrayList<Departamento> obtenerListaDepartamentos() {
+        return listaDepartamentos;
     }
 
-    public ObjectOutputStream obtenerSalida() {
+    public ObjectOutputStream obtenerSalida(){
         return salida;
     }
-
     public void cerrarArchivo() {
         try // cierra el archivo
         {
@@ -91,8 +87,7 @@ public class EscribirConstructora {
         } // fin de try
         catch (IOException ioException) {
             System.err.println("Error al cerrar el archivo.");
-
+            
         } // fin de catch
-    }
-
+    } 
 }
