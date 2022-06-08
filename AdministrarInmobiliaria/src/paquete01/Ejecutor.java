@@ -129,7 +129,7 @@ public class Ejecutor {
                     op = 7;
                     break;
                 case 0:
-                    System.out.println("¡GRACIAS VUELVA PRONTO! :)");
+                    System.out.println("¡GRACIAS VUELVA PRONTO!");
             }
         } while (op != 0);
     }
